@@ -44,12 +44,12 @@ SysmonRealtime/
     build_config.py                可选，离线重建/验证规则
     upstream/                      固定上游 XML、来源、许可证
   guest/
-    SysmonSerialCollector.exe      已编译的 C# 采集器
+    SysmonSerialCollector.exe      运行 guest/build.ps1 后生成的 C# 采集器
     SysmonSerialCollector.exe.config
     Collector.cs                   源码
     install.ps1                    安装开机计划任务
     uninstall.ps1                  移除采集任务，保留诊断文件
-    build.ps1                      可选，重新编译
+    build.ps1                      从源码编译采集器
   host/
     receiver.py                    单轮接收与中断文件恢复
     run_benign_realtime.ps1         正常手动采集：每轮明确输入软件名称与SHA256
@@ -72,7 +72,7 @@ SysmonRealtime/
 
 组件版本分别管理：C# 采集器 1.0、Python 接收端 1.2.0、预处理 2.0.1、规则 `thesis-swift-offline-v2.0.0`。新配置 SHA256 为 `2411d23e6d8f7902848ff14aa1061d9dc0caa5ed4f7052ebaba0eb00be2f1db1`，与旧 v1.0 配置不同。
 
-不包含 Sysmon 官方二进制、VMware、样本文件、原始研究日志或训练 Notebook。`sysmon/build_config.py` 只为复现规则服务，安装不需要运行它。所有示例均为 PowerShell；复制代码块内部内容，不要复制提示符 `PS>`、`>>` 或 Markdown 围栏。
+不包含 Sysmon 官方二进制、VMware、样本文件和原始研究日志。训练 Notebook 位于 training/ 与 training_baselines/。`sysmon/build_config.py` 只为复现规则服务，安装不需要运行它。所有示例均为 PowerShell；复制代码块内部内容，不要复制提示符 `PS>`、`>>` 或 Markdown 围栏。
 
 ## 2. 目录和数据流约定
 
@@ -166,7 +166,7 @@ Get-WinEvent -LogName Microsoft-Windows-Sysmon/Operational -MaxEvents 1
 
 看到 `waiting for host START` 是正常待机；主机发 START 才创建本轮未来事件订阅。任务一直 Running 也正常。COM1 不能同时被计划任务和前台采集器占用。
 
-已包含编译好的 EXE；可选重新编译命令是 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1`，EXE 与 `.exe.config` 一起部署。
+源码版不包含 EXE；安装前的编译命令是 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1`，EXE 与 `.exe.config` 一起部署。
 
 ## 6. 建立统一、健康的快照
 
@@ -392,10 +392,10 @@ Copy-Item .\sysmon\sysmonconfig-export.xml D:\SysmonExperimentProfiles\thesis-sw
 
 ## 12. 预处理：两类日志统一构建
 
-使用 [preprocess/README.md](preprocess/README.md) 的v2流程。预处理脚本只读原日志，正常和恶意批次在清单中显式标注，输出到新目录。已提供本次两个真实运行的 inputs.pilot.json，以及需要核对路径的 inputs.all.example.json。
+使用 [preprocess/README.md](preprocess/README.md) 的v2流程。预处理脚本只读原日志，正常和恶意批次在清单中显式标注，输出到新目录。源码版提供 inputs.all.example.json；将其复制为本地 inputs.all.json，并按自己的数据修改路径与标签。
 
 ```powershell
-& $python .\preprocess\preprocess.py --input-manifest .\preprocess\inputs.pilot.json --output 'D:\SysmonProcessed\pilot-v2' --sequence-length 64
+& $python .\preprocess\preprocess.py --input-manifest .\preprocess\inputs.all.json --output 'D:\SysmonProcessed\pilot-v2' --sequence-length 64
 & $python .\preprocess\dataset.py 'D:\SysmonProcessed\pilot-v2'
 ```
 
@@ -418,7 +418,7 @@ Copy-Item .\sysmon\sysmonconfig-export.xml D:\SysmonExperimentProfiles\thesis-sw
 
 默认使用 System/TimeCreated，process 窗口锚定已验证的启动事件，immediate 窗口锚定 guest_ready_utc；原始 Sysmon UtcTime 和主机收到时间保留用于审计。`--time-source sysmon` 可用于独立敏感性分析，但要对比较的数据采用一致策略。
 
-system 与 related 是有重叠的两种视图，应分别训练/比较，不能当作独立样本直接混合。训练前按样本 SHA256 分组；正常软件还要按软件/场景分组。不要把同一轮片段拆到训练和测试两侧。当前工具不做模型训练、数据集划分、编码器拟合或 SMOTE。
+system 与 related 是有重叠的两种视图，应分别训练/比较，不能当作独立样本直接混合。训练前按样本 SHA256 分组；正常软件还要按软件/场景分组。不要把同一轮片段拆到训练和测试两侧。采集与预处理工具不做模型训练、编码器拟合或 SMOTE。数据划分见 make_splits.py，训练见 training/ 与 training_baselines/。
 
 ## 14. 常见问题
 
