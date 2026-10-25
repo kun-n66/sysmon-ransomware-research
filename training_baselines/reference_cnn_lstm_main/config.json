@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "python": "3.13.15",
+  "packages": {
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2",
+    "numpy": "2.1.3",
+    "scikit-learn": "1.6.1"
+  },
+  "seed": 20261001,
+  "epochs": 40,
+  "batch_size": 32,
+  "view": "system",
+  "input_shape": [
+    32,
+    148
+  ],
+  "parameters": 73089,
+  "software_groups_reviewed": false,
+  "interpretation": "pilot hash/group holdout",
+  "dataset_checksums_sha256": "5466ce4e9fed55ea2fe17dd1c7b2341be4fa9b8f5bb540ffb09a8dab49e0455e",
+  "devices": [
+    "PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')",
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ],
+  "labels": {
+    "benign": 0,
+    "ransomware": 1
+  },
+  "label_scope": "run_weak_label",
+  "aggregation": "mean chunk probability; fixed before evaluation",
+  "weights": "train: inverse chunks per run times inverse class run count; normalized mean 1",
+  "selection": "minimum run-balanced validation binary crossentropy"
+}

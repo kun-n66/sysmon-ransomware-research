@@ -1,0 +1,2 @@
+# Preserve pinned XML, patches, notebooks and SHA-256 manifests byte for byte.
+* -text

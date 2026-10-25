@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Sysmon schemaversion="4.90">
+  <!-- thesis-swift-offline-v2.0.0. Derived from SwiftOnSecurity/sysmon-config; commit 1836897f12fbd6a0a473665ef6abc34a6b497e31. Original license CC BY 4.0. Source and attribution: upstream/swift/. Changes: README.md. Offline host-behavior research; identical rules for both classes. No network telemetry, archival or blocking. Not a ransomware classifier. -->
+  <HashAlgorithms>SHA256</HashAlgorithms>
+  <CheckRevocation>False</CheckRevocation>
+  <DnsLookup>False</DnsLookup>
+  <EventFiltering>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreateTime onmatch="include">
+        <Image name="T1099" condition="begin with">C:\Users</Image>
+        <TargetFilename name="T1099" condition="end with">.exe</TargetFilename>
+        <Image name="T1099" condition="begin with">\Device\HarddiskVolumeShadowCopy</Image>
+      </FileCreateTime>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreateTime onmatch="exclude">
+        <Image condition="image">OneDrive.exe</Image>
+        <Image condition="image">C:\Windows\system32\backgroundTaskHost.exe</Image>
+        <Image condition="contains">setup</Image>
+        <Image condition="contains">install</Image>
+        <Image condition="contains">Update\</Image>
+        <Image condition="end with">redist.exe</Image>
+        <Image condition="is">msiexec.exe</Image>
+        <Image condition="is">TrustedInstaller.exe</Image>
+        <TargetFilename condition="contains">\NVIDIA\NvBackend\ApplicationOntology\</TargetFilename>
+      </FileCreateTime>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <DriverLoad onmatch="exclude">
+        <Signature condition="contains">microsoft</Signature>
+        <Signature condition="contains">windows</Signature>
+        <Signature condition="begin with">Intel </Signature>
+      </DriverLoad>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <ImageLoad onmatch="include">
+			
+		</ImageLoad>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <CreateRemoteThread onmatch="exclude">
+        <SourceImage condition="is">C:\Windows\system32\wbem\WmiPrvSE.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\system32\svchost.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\system32\wininit.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\system32\csrss.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\system32\services.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\system32\winlogon.exe</SourceImage>
+        <SourceImage condition="is">C:\Windows\system32\audiodg.exe</SourceImage>
+        <StartModule condition="is">C:\Windows\system32\kernel32.dll</StartModule>
+        <TargetImage condition="is">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</TargetImage>
+      </CreateRemoteThread>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <RawAccessRead onmatch="include">
+			
+		</RawAccessRead>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <ProcessAccess onmatch="include">
+			
+		</ProcessAccess>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <RegistryEvent onmatch="include">
+        <TargetObject name="T1060,RunKey" condition="contains">CurrentVersion\Run</TargetObject>
+        <TargetObject name="T1060,RunPolicy" condition="contains">Policies\Explorer\Run</TargetObject>
+        <TargetObject name="T1484" condition="contains">Group Policy\Scripts</TargetObject>
+        <TargetObject name="T1484" condition="contains">Windows\System\Scripts</TargetObject>
+        <TargetObject name="T1060" condition="contains">CurrentVersion\Windows\Load</TargetObject>
+        <TargetObject name="T1060" condition="contains">CurrentVersion\Windows\Run</TargetObject>
+        <TargetObject name="T1060" condition="contains">CurrentVersion\Winlogon\Shell</TargetObject>
+        <TargetObject name="T1060" condition="contains">CurrentVersion\Winlogon\System</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\AeDebug</TargetObject>
+        <TargetObject condition="contains">UserInitMprLogonScript</TargetObject>
+        <TargetObject name="T1112,ChangeStartupFolderPath" condition="end with">user shell folders\startup</TargetObject>
+        <TargetObject name="T1031,T1050" condition="end with">\ServiceDll</TargetObject>
+        <TargetObject name="T1031,T1050" condition="end with">\ServiceManifest</TargetObject>
+        <TargetObject name="T1031,T1050" condition="end with">\ImagePath</TargetObject>
+        <TargetObject name="T1031,T1050" condition="end with">\Start</TargetObject>
+        <TargetObject name="RDP port change" condition="end with">Control\Terminal Server\WinStations\RDP-Tcp\PortNumber</TargetObject>
+        <TargetObject name="RDP port change" condition="end with">Control\Terminal Server\fSingleSessionPerUser</TargetObject>
+        <TargetObject name="ModifyRemoteDesktopState" condition="end with">fDenyTSConnections</TargetObject>
+        <TargetObject condition="end with">LastLoggedOnUser</TargetObject>
+        <TargetObject name="ModifyRemoteDesktopPort" condition="end with">RDP-tcp\PortNumber</TargetObject>
+        <TargetObject condition="end with">Services\PortProxy\v4tov4</TargetObject>
+        <TargetObject name="T1042" condition="contains">\command\</TargetObject>
+        <TargetObject name="T1122" condition="contains">\ddeexec\</TargetObject>
+        <TargetObject name="T1122" condition="contains">{86C86720-42A0-1069-A2E8-08002B30309D}</TargetObject>
+        <TargetObject name="T1042" condition="contains">exefile</TargetObject>
+        <TargetObject name="T1122" condition="end with">\InprocServer32\(Default)</TargetObject>
+        <TargetObject name="T1158" condition="end with">\Hidden</TargetObject>
+        <TargetObject name="T1158" condition="end with">\ShowSuperHidden</TargetObject>
+        <TargetObject name="T1158" condition="end with">\HideFileExt</TargetObject>
+        <TargetObject condition="contains">Classes\*\</TargetObject>
+        <TargetObject condition="contains">Classes\AllFilesystemObjects\</TargetObject>
+        <TargetObject condition="contains">Classes\Directory\</TargetObject>
+        <TargetObject condition="contains">Classes\Drive\</TargetObject>
+        <TargetObject condition="contains">Classes\Folder\</TargetObject>
+        <TargetObject condition="contains">Classes\PROTOCOLS\</TargetObject>
+        <TargetObject condition="contains">ContextMenuHandlers\</TargetObject>
+        <TargetObject condition="contains">CurrentVersion\Shell</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellExecuteHooks</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellServiceObjectDelayLoad</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\explorer\ShellIconOverlayIdentifiers</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\App Paths\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\InitialProgram</TargetObject>
+        <TargetObject name="T1484" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\WinSock</TargetObject>
+        <TargetObject condition="end with">\ProxyServer</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider</TargetObject>
+        <TargetObject name="T1101" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Netsh</TargetObject>
+        <TargetObject condition="contains">Software\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyEnable</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\NetworkProvider\Order\</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles</TargetObject>
+        <TargetObject name="T1089" condition="end with">\EnableFirewall</TargetObject>
+        <TargetObject name="T1089" condition="end with">\DoNotAllowExceptions</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\AuthorizedApplications\List</TargetObject>
+        <TargetObject name="T1103" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls\</TargetObject>
+        <TargetObject name="T1103" condition="begin with">HKLM\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows\Appinit_Dlls\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls\</TargetObject>
+        <TargetObject name="T1137" condition="contains">Microsoft\Office\Outlook\Addins\</TargetObject>
+        <TargetObject name="T1137" condition="contains">Office Test\</TargetObject>
+        <TargetObject name="Context,ProtectedModeExitOrMacrosUsed" condition="contains">Security\Trusted Documents\TrustRecords</TargetObject>
+        <TargetObject name="Context,ContactedDomain" condition="end with">\EnableBHO</TargetObject>
+        <TargetObject name="T1176" condition="contains">Internet Explorer\Toolbar\</TargetObject>
+        <TargetObject name="T1176" condition="contains">Internet Explorer\Extensions\</TargetObject>
+        <TargetObject name="T1176" condition="contains">Browser Helper Objects\</TargetObject>
+        <TargetObject condition="end with">\DisableSecuritySettingsCheck</TargetObject>
+        <TargetObject condition="end with">\3\1206</TargetObject>
+        <TargetObject condition="end with">\3\2500</TargetObject>
+        <TargetObject condition="end with">\3\1809</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Classes\CLSID\{AB8902B4-09CA-4BB6-B78D-A8F59079A8D5}\</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Classes\WOW6432Node\CLSID\{AB8902B4-09CA-4BB6-B78D-A8F59079A8D5}\</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Classes\WOW6432Node\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\</TargetObject>
+        <TargetObject condition="end with">\UrlUpdateInfo</TargetObject>
+        <TargetObject condition="end with">\InstallSource</TargetObject>
+        <TargetObject name="Alert,Sysinternals Tool Used" condition="end with">\EulaAccepted</TargetObject>
+        <TargetObject name="T1089,Tamper-Defender" condition="end with">\DisableAntiSpyware</TargetObject>
+        <TargetObject name="T1089,Tamper-Defender" condition="end with">\DisableAntiVirus</TargetObject>
+        <TargetObject name="T1089,Tamper-Defender" condition="end with">\SpynetReporting</TargetObject>
+        <TargetObject name="T1089,Tamper-Defender" condition="end with">DisableRealtimeMonitoring</TargetObject>
+        <TargetObject name="T1089,Tamper-Defender" condition="end with">\SubmitSamplesConsent</TargetObject>
+        <TargetObject name="T1562,Tamper-Defender" condition="begin with">HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Exclusions\</TargetObject>
+        <TargetObject name="T1088" condition="end with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA</TargetObject>
+        <TargetObject name="T1088" condition="end with">HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy</TargetObject>
+        <TargetObject name="T1089,Tamper-SecCenter" condition="end with">HKLM\Software\Microsoft\Security Center\</TargetObject>
+        <TargetObject name="T1089,Tamper-SecCenter" condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\HideSCAHealth</TargetObject>
+        <TargetObject name="T1138,AppCompatShim" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom</TargetObject>
+        <TargetObject name="T1138,AppCompatShim" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB</TargetObject>
+        <TargetObject condition="contains">VirtualStore</TargetObject>
+        <TargetObject name="T1183,IFEO" condition="begin with">HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\</TargetObject>
+        <TargetObject name="Tamper-Safemode" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Safeboot\</TargetObject>
+        <TargetObject name="Tamper-Winlogon" condition="begin with">HKLM\SYSTEM\CurrentControlSet\Control\Winlogon\</TargetObject>
+        <TargetObject name="Context,DeviceConnectedOrUpdated" condition="end with">\FriendlyName</TargetObject>
+        <TargetObject name="Context,MsiInstallerStarted" condition="is">HKLM\Software\Microsoft\Windows\CurrentVersion\Installer\InProgress\(Default)</TargetObject>
+        <TargetObject name="Tamper-Tracing" condition="begin with">HKLM\Software\Microsoft\Tracing\RASAPI32</TargetObject>
+        <TargetObject name="Context,ProcessAccessedPrivateResource" condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\</TargetObject>
+        <TargetObject condition="contains">\Keyboard Layout\Preload</TargetObject>
+        <TargetObject condition="contains">\Keyboard Layout\Substitutes</TargetObject>
+        <TargetObject name="InvDB-Path" condition="end with">\LowerCaseLongPath</TargetObject>
+        <TargetObject name="InvDB-Pub" condition="end with">\Publisher</TargetObject>
+        <TargetObject name="InvDB-Ver" condition="end with">\BinProductVersion</TargetObject>
+        <TargetObject name="InvDB-DriverVer" condition="end with">\DriverVersion</TargetObject>
+        <TargetObject name="InvDB-DriverVer" condition="end with">\DriverVerVersion</TargetObject>
+        <TargetObject name="InvDB-CompileTimeClaim" condition="end with">\LinkDate</TargetObject>
+        <TargetObject name="InvDB" condition="contains">Compatibility Assistant\Store\</TargetObject>
+        <Image name="Suspicious,ImageBeginWithBackslash" condition="end with">regedit.exe</Image>
+        <Image name="Suspicious,ImageBeginWithBackslash" condition="begin with">\</Image>
+      </RegistryEvent>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <RegistryEvent onmatch="exclude">
+        <TargetObject condition="contains">\{CAFEEFAC-</TargetObject>
+        <EventType condition="is">CreateKey</EventType>
+        <TargetObject condition="begin with">HKLM\COMPONENTS</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\AppModel\StateRepository\Cache</TargetObject>
+        <TargetObject condition="end with">Toolbar\WebBrowser</TargetObject>
+        <TargetObject condition="end with">Browser\ITBar7Height</TargetObject>
+        <TargetObject condition="end with">Browser\ITBar7Layout</TargetObject>
+        <TargetObject condition="end with">Internet Explorer\Toolbar\Locked</TargetObject>
+        <TargetObject condition="end with">Toolbar\WebBrowser\{47833539-D0C5-4125-9FA8-0819E2EAAC93}</TargetObject>
+        <TargetObject condition="end with">}\PreviousPolicyAreas</TargetObject>
+        <TargetObject condition="contains">\Control\WMI\Autologger\</TargetObject>
+        <TargetObject condition="end with">HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc\Start</TargetObject>
+        <TargetObject condition="end with">\Lsa\OfflineJoin\CurrentValue</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\</TargetObject>
+        <TargetObject condition="contains">_Classes\AppX</TargetObject>
+        <TargetObject condition="begin with">HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\</TargetObject>
+        <TargetObject condition="end with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\LsaPid</TargetObject>
+        <TargetObject condition="end with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\SspiCache</TargetObject>
+        <TargetObject condition="end with">HKLM\SYSTEM\CurrentControlSet\Control\Lsa\Kerberos\Domains</TargetObject>
+        <TargetObject condition="end with">\Services\BITS\Start</TargetObject>
+        <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_32\Start</TargetObject>
+        <TargetObject condition="end with">\services\clr_optimization_v2.0.50727_64\Start</TargetObject>
+        <TargetObject condition="end with">\services\clr_optimization_v4.0.30319_32\Start</TargetObject>
+        <TargetObject condition="end with">\services\clr_optimization_v4.0.30319_64\Start</TargetObject>
+        <TargetObject condition="end with">\services\deviceAssociationService\Start</TargetObject>
+        <TargetObject condition="end with">\services\fhsvc\Start</TargetObject>
+        <TargetObject condition="end with">\services\nal\Start</TargetObject>
+        <TargetObject condition="end with">\services\trustedInstaller\Start</TargetObject>
+        <TargetObject condition="end with">\services\tunnel\Start</TargetObject>
+        <TargetObject condition="end with">\services\usoSvc\Start</TargetObject>
+        <TargetObject condition="end with">\UserChoice\ProgId</TargetObject>
+        <TargetObject condition="end with">\UserChoice\Hash</TargetObject>
+        <TargetObject condition="end with">\OpenWithList\MRUList</TargetObject>
+        <TargetObject condition="contains">Shell Extentions\Cached</TargetObject>
+        <TargetObject condition="end with">HKLM\System\CurrentControlSet\Control\Lsa\Audit\SpecialGroups</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\PSScriptOrder</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\SOM-ID</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\GPO-ID</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\0\IsPowershell</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\0\0\ExecTime</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\0\PSScriptOrder</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\0\SOM-ID</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\0\GPO-ID</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\0\0\IsPowershell</TargetObject>
+        <TargetObject condition="end with">SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\0\0\ExecTime</TargetObject>
+        <TargetObject condition="contains">\safer\codeidentifiers\0\HASHES\{</TargetObject>
+        <TargetObject condition="contains">VirtualStore\MACHINE\SOFTWARE\Microsoft\Office\ClickToRun\</TargetObject>
+        <TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Office\ClickToRun\</TargetObject>
+        <Image condition="is">C:\Program Files\WIDCOMM\Bluetooth Software\btwdins.exe</Image>
+        <TargetObject condition="begin with">HKCR\VLC.</TargetObject>
+        <TargetObject condition="begin with">HKCR\iTunes.</TargetObject>
+        <TargetObject condition="is">HKLM\Software\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\{945a8954-c147-4acd-923f-40c45405a658}</TargetObject>
+      </RegistryEvent>
+    </RuleGroup>
+    <FileCreateStreamHash onmatch="include">
+      <TargetFilename condition="contains">Downloads</TargetFilename>
+      <TargetFilename condition="contains">Temp\7z</TargetFilename>
+      <TargetFilename condition="contains">Startup</TargetFilename>
+      <TargetFilename condition="end with">.bat</TargetFilename>
+      <TargetFilename condition="end with">.cmd</TargetFilename>
+      <TargetFilename condition="end with">.doc</TargetFilename>
+      <TargetFilename condition="end with">.hta</TargetFilename>
+      <TargetFilename condition="end with">.jse</TargetFilename>
+      <TargetFilename condition="end with">.lnk</TargetFilename>
+      <TargetFilename condition="end with">.ppt</TargetFilename>
+      <TargetFilename condition="end with">.ps1</TargetFilename>
+      <TargetFilename condition="end with">.ps2</TargetFilename>
+      <TargetFilename condition="end with">.reg</TargetFilename>
+      <TargetFilename condition="end with">.sct</TargetFilename>
+      <TargetFilename condition="end with">.vb</TargetFilename>
+      <TargetFilename condition="end with">.vbe</TargetFilename>
+      <TargetFilename condition="end with">.vbs</TargetFilename>
+      <TargetFilename condition="end with">.wsc</TargetFilename>
+      <TargetFilename condition="end with">.wsf</TargetFilename>
+    </FileCreateStreamHash>
+    <RuleGroup name="" groupRelation="or">
+      <FileCreateStreamHash onmatch="exclude">
+		</FileCreateStreamHash>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <PipeEvent onmatch="include">
+        <PipeName condition="contains any">paexec;remcom;csexec</PipeName>
+        <PipeName condition="contains any">\lsadump;\cachedump;\wceservicepipe</PipeName>
+        <PipeName condition="contains any">\isapi_http;\isapi_dg;\isapi_dg2;\sdlrpc;\ahexec;\winsession;\lsassw;\46a676ab7f179e511e30dd2dc41bd388;\9f81f59bc58452127884ce513865ed20;\e710f28d59aa529d6792ca6ff0ca1b34;\rpchlp_3;\NamePipe_MoreWindows;\pcheap_reuse;\gruntsvc;\583da945-62af-10e8-4902-a8f205c72b2e;\bizkaz;\svcctl;\Posh;\jaccdpqnvbrrxlaf;\csexecsvc</PipeName>
+        <PipeName condition="contains any">\atctl;\userpipe;\iehelper;\sdlrpc;\comnap</PipeName>
+        <PipeName condition="contains all">MSSE-;-server</PipeName>
+        <PipeName condition="begin with">\postex_</PipeName>
+        <PipeName condition="begin with">\postex_ssh_</PipeName>
+        <PipeName condition="begin with">\status_</PipeName>
+        <PipeName condition="begin with">\msagent_</PipeName>
+      </PipeEvent>
+    </RuleGroup>
+    <RuleGroup name="" groupRelation="or">
+      <WmiEvent onmatch="exclude">
+			
+		</WmiEvent>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <ProcessCreate onmatch="exclude" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <NetworkConnect onmatch="include" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <ProcessTerminate onmatch="exclude" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileCreate onmatch="exclude" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <DnsQuery onmatch="include" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileDelete onmatch="include" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <ClipboardChange onmatch="include" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <ProcessTampering onmatch="include" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileDeleteDetected onmatch="exclude" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileBlockExecutable onmatch="include" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileBlockShredding onmatch="include" />
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <FileExecutableDetected onmatch="include" />
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>

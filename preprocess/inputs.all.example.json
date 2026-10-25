@@ -1,0 +1,10 @@
+[
+  {
+    "path": "D:\\SysmonBenignLogs\\thesis-v1_1-batch01",
+    "label": "benign"
+  },
+  {
+    "path": "D:\\SysmonLogs\\newrules",
+    "label": "ransomware"
+  }
+]

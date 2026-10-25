@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/SwiftOnSecurity/sysmon-config",
+  "commit": "1836897f12fbd6a0a473665ef6abc34a6b497e31",
+  "file_last_commit_utc": "2021-10-17T01:19:08Z",
+  "retrieved_date": "2026-09-14",
+  "pinned_url": "https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/1836897f12fbd6a0a473665ef6abc34a6b497e31/sysmonconfig-export.xml",
+  "xml_sha256": "055febc600e6d7448cdf3812307275912927a62b1f94d0d933b64b294bc87162",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv*/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+data/
+logs/
+prepared/
+results/
+*.keras
+*.h5
+*.evtx
+*.zip
+*.exe
+*.dll

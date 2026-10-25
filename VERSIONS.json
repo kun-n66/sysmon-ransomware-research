@@ -1,0 +1,14 @@
+{
+  "package_version": "2026.09.29-benign-name",
+  "collector_version": "1.0",
+  "preprocess_version": "2.0.1",
+  "sysmon_config_id": "thesis-swift-offline-v2.0.0",
+  "sysmon_config_sha256": "2411d23e6d8f7902848ff14aa1061d9dc0caa5ed4f7052ebaba0eb00be2f1db1",
+  "runtime_changes": "Normal capture requires an explicit software name; new host/run_benign_realtime.ps1; receiver derives benign family and rejects stale labels; preprocessing preserves declared software_name. Guest and Sysmon unchanged.",
+  "controller_gui_mode": "nogui (existing behavior)",
+  "configuration_fingerprint_automatically_recorded_per_run": false,
+  "default_binary_training_ready": false,
+  "receiver_version": "1.2.0",
+  "sysmon_config_base": "SwiftOnSecurity/sysmon-config",
+  "sysmon_config_upstream_commit": "1836897f12fbd6a0a473665ef6abc34a6b497e31"
+}

@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/olafhartong/sysmon-modular",
+  "commit": "a9ff298f6d228c181be71b213c73d111c6096f41",
+  "file_last_commit_utc": "2023-09-20T07:33:03Z",
+  "retrieved_date": "2026-09-11",
+  "requested_url": "https://raw.githubusercontent.com/olafhartong/sysmon-modular/master/sysmonconfig-with-filedelete.xml",
+  "pinned_url": "https://raw.githubusercontent.com/olafhartong/sysmon-modular/a9ff298f6d228c181be71b213c73d111c6096f41/sysmonconfig-with-filedelete.xml",
+  "xml_sha256": "81933b12ec8df9edcb1175aff7db0dfc0076600d1ee4f71f7606869146449a0f",
+  "license_url": "https://github.com/olafhartong/sysmon-modular/blob/a9ff298f6d228c181be71b213c73d111c6096f41/license.md"
+}
