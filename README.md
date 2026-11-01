@@ -6,6 +6,12 @@ A research toolkit for collecting Sysmon events from an offline Windows virtual 
 
 The collection workflow streams events to the physical host through a VMware virtual serial port and a local named pipe. It supports controlled benign-software sessions and snapshot-based ransomware experiments, with a default observation window of 300 seconds.
 
+## Expanded dataset update — 2026-10-28
+
+The latest checked batch adds 55 benign collection runs, including 51 new training candidates. It contains **563 candidate runs: 115 benign and 448 ransomware**, with a shared **403 / 80 / 80** train/validation/test split for all three models.
+
+See the [expanded-data experiment](experiments/20261028/README.md) for audited metadata, exact splits, recorded predictions and metrics, and dated notebooks. The new split reassigns 222 previously present runs, so old/new scores cannot isolate the effect of adding benign data. Original notebooks retain their historical defaults; use the dated variants for this batch. Raw logs, prepared data, and weights remain unpublished.
+
 ## Features
 
 - **Event collection:** a C# guest collector, a Python host receiver, and PowerShell controllers for benign and ransomware sessions.

@@ -1,0 +1,61 @@
+{
+  "primary_run_level": {
+    "n": 80,
+    "threshold": 0.6964176183011239,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "f2": 1.0,
+    "roc_auc": 1.0,
+    "average_precision": 1.0,
+    "fpr": 0.0,
+    "fnr": 0.0,
+    "tn": 14,
+    "fp": 0,
+    "fn": 0,
+    "tp": 66
+  },
+  "secondary_chunk_level": {
+    "n": 4801,
+    "threshold": 0.6964176183011239,
+    "accuracy": 0.972089148094147,
+    "balanced_accuracy": 0.9808955898441994,
+    "precision": 0.9991575400168492,
+    "recall": 0.9644890214150176,
+    "f1": 0.9815172413793103,
+    "f2": 0.97122891303161,
+    "roc_auc": 0.9984137655990686,
+    "average_precision": 0.9994109816163839,
+    "fpr": 0.002697841726618705,
+    "fnr": 0.03551097858498238,
+    "tn": 1109,
+    "fp": 3,
+    "fn": 131,
+    "tp": 3558
+  },
+  "notes": "Chunks are dependent weak-label samples; primary metric unit is a run, not an event.",
+  "ransomware_family_recall": {
+    "AvosLocker": {
+      "n": 2,
+      "detected": 2
+    },
+    "BlackBasta": {
+      "n": 1,
+      "detected": 1
+    },
+    "Conti": {
+      "n": 18,
+      "detected": 18
+    },
+    "Hive": {
+      "n": 25,
+      "detected": 25
+    },
+    "Lockbit": {
+      "n": 20,
+      "detected": 20
+    }
+  }
+}

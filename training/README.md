@@ -1,5 +1,7 @@
 # Sysmon CNN-LSTM Colab v1.0
 
+> **2026-10-28 新批次**：新增正常日志后的数据包含 563 次候选运行，固定划分为 403/80/80。请使用 [日期版 Notebook](Sysmon_CNN_LSTM_Colab_20261028.ipynb)，并先按[实验说明](../experiments/20261028/README.md)提供对应完整数据和发布的 `splits.csv`。下文保留早期批次的说明与默认参数，不能将其数据规模或划分套用于新批次。
+
 本项目把 Preprocess **v2.0.1** 的系统事件序列输入 CNN-LSTM，完成 `benign=0 / ransomware=1` 二分类。主要实验使用 `system` 视图，预测单位包括事件片段与整次采集。它是针对离线 Windows 10 主机行为的实验代码，不是完整复现 iCNN-LSTM+，也没有实现增量学习。
 
 ## 1. 最简单的 Colab 使用方法

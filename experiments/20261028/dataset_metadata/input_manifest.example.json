@@ -1,0 +1,10 @@
+[
+  {
+    "path": "D:/ResearchLogs/benign",
+    "label": "benign"
+  },
+  {
+    "path": "D:/ResearchLogs/ransomware",
+    "label": "ransomware"
+  }
+]

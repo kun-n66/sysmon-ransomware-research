@@ -1,0 +1,108 @@
+{
+  "train": {
+    "sequences": 25757,
+    "runs": 403,
+    "labels": {
+      "ransomware": 316,
+      "benign": 87
+    },
+    "families": {
+      "Lockbit": 97,
+      "Benign_gimp-3.2.6-setup.exe": 1,
+      "Conti": 84,
+      "Hive": 120,
+      "AvosLocker": 11,
+      "Benign_cloudmusic.exe": 2,
+      "BlackBasta": 4,
+      "Benign_uninst.exe": 1,
+      "Benign_unins000.exe": 3,
+      "Benign_python-manager-26.3": 1,
+      "Benign_NotepadPlusPlus": 9,
+      "Benign_Telegram.exe": 2,
+      "Benign_360Safe.exe": 1,
+      "Benign_uninstall": 11,
+      "Benign_Uninstall.exe": 9,
+      "Benign_ThunderStart.exe": 2,
+      "Benign_ChromeSetup": 1,
+      "Benign_7z": 1,
+      "Benign_Doubao.exe": 2,
+      "Benign_uninstall.exe": 6,
+      "Benign_DiscordSetup.exe": 2,
+      "Benign_WhatsAppInstaller.exe": 1,
+      "Benign_Microsoft Edge.lnk": 5,
+      "Benign_Doubao_online_installer_2.25.16.exe": 2,
+      "Benign_NeteaseCloudMusic_Music_official_3.1.40.205461_64.exe": 2,
+      "Benign_notepad++.exe": 1,
+      "Benign_XunLeiWebSetup25.1.13.1637gw.exe": 3,
+      "Benign_jre-8u511-windows-x64.exe": 2,
+      "Benign_ThunderUninstall.exe": 3,
+      "Benign_WXWork.exe": 1,
+      "Benign_GIMP 3.2.6.lnk": 1,
+      "Benign_QQ_9.9.33_260730_x64_01.exe": 1,
+      "Benign_Firefox.exe": 1,
+      "Benign_chrome.exe": 1,
+      "Benign_GitHubDesktopSetup-x64.exe": 1,
+      "Benign_Steam.exe": 1,
+      "Benign_setup.exe": 1,
+      "Benign_FreeFileSync_14.12_Windows_Setup.exe": 1,
+      "Benign_WeChatWin_4.1.13.exe": 1,
+      "Benign_Chrome": 1,
+      "Benign_SteamSetup.exe": 1,
+      "Benign_Claude Setup.exe": 1,
+      "Benign_KakaoTalk_Setup.exe": 1
+    },
+    "groups": 368
+  },
+  "validation": {
+    "sequences": 5319,
+    "runs": 80,
+    "labels": {
+      "ransomware": 66,
+      "benign": 14
+    },
+    "families": {
+      "Conti": 18,
+      "Hive": 25,
+      "Lockbit": 20,
+      "Benign_td-setup-win-x64-7.3.3.exe": 2,
+      "AvosLocker": 2,
+      "Benign_UnInstall.exe": 2,
+      "Benign_Feishu-win32_x64-8.3.14-signed.exe": 2,
+      "Benign_QuarkPC_V7.3.5.1009_pc_pf30002_(zh-cn)_releasemini_(Build3196323-1001-x64).exe": 2,
+      "Benign_npp.8.9.8.Installer.x64.exe": 1,
+      "Benign_Google Chrome.lnk": 1,
+      "Benign_Notepad++.lnk": 1,
+      "Benign_NotepadPlusPlus": 1,
+      "BlackBasta": 1,
+      "Benign_7z2603-x64": 1,
+      "Benign_unins000.exe": 1
+    },
+    "groups": 76
+  },
+  "test": {
+    "sequences": 4801,
+    "runs": 80,
+    "labels": {
+      "benign": 14,
+      "ransomware": 66
+    },
+    "families": {
+      "Benign_FreeFileSync.lnk": 1,
+      "Lockbit": 20,
+      "Conti": 18,
+      "BlackBasta": 1,
+      "Hive": 25,
+      "Benign_uninstall.exe": 3,
+      "Benign_Firefox Installer.exe": 1,
+      "Benign_msedge.exe": 1,
+      "Benign_Discord.exe": 2,
+      "Benign_Feishu.exe": 2,
+      "Benign_NotepadPlusPlus": 1,
+      "Benign_Quark\\quark.exe": 1,
+      "AvosLocker": 2,
+      "Benign_winrar-x64-723.exe": 1,
+      "Benign_python.exe": 1
+    },
+    "groups": 76
+  }
+}

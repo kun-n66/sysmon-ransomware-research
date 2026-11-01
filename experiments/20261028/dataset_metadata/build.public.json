@@ -1,0 +1,27 @@
+{
+  "state": "complete",
+  "version": "2.0.1",
+  "python": "3.12.14",
+  "created_utc": "2026-10-28T00:51:06.072699Z",
+  "source_roots": [
+    "<BENIGN_LOG_ROOT>",
+    "<RANSOMWARE_LOG_ROOT>"
+  ],
+  "script_sha256": "7d7116e4cc17a2da5ff41bd989d913b6940613a7db8f0f83c586e7d215ead86a",
+  "feature_code_sha256": "8f961627221a13ee6f2e7d67e0b57745cc09e0ade9809e9b9576ba820c1cd086",
+  "input_manifest_sha256": "7b4a294e3b57da5aa97e13a337196c7b7f1fdddbcdb06d6fa1e9b36a537b628a",
+  "parameters": {
+    "input": null,
+    "input_manifest": "input_manifest.example.json",
+    "output": "all-families-benign-seq32-20261028-094152",
+    "family": null,
+    "label": "unknown",
+    "annotations": null,
+    "time_source": "system",
+    "timestamp_tolerance": 5.0,
+    "sequence_length": 32,
+    "max_xml_mib": 512
+  },
+  "annotations_sha256": null,
+  "publication_note": "Local paths replaced with placeholders. This public copy is not the original build.json referenced by source_dataset_SHA256SUMS.txt."
+}

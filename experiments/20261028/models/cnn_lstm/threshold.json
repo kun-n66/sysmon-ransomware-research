@@ -1,0 +1,24 @@
+{
+  "threshold": 0.6964176183011239,
+  "source": "validation runs ONLY",
+  "objective": "max F2; ties: lower FPR, then higher threshold",
+  "aggregation": "arithmetic mean of chunk probabilities",
+  "validation_metrics": {
+    "n": 80,
+    "threshold": 0.6964176183011239,
+    "accuracy": 0.9875,
+    "balanced_accuracy": 0.9642857142857143,
+    "precision": 0.9850746268656716,
+    "recall": 1.0,
+    "f1": 0.9924812030075187,
+    "f2": 0.9969788519637462,
+    "roc_auc": 0.998917748917749,
+    "average_precision": 0.9997738579828133,
+    "fpr": 0.07142857142857142,
+    "fnr": 0.0,
+    "tn": 13,
+    "fp": 1,
+    "fn": 0,
+    "tp": 66
+  }
+}

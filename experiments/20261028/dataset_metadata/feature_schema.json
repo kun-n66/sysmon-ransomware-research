@@ -1,0 +1,224 @@
+{
+  "version": "2.0.1",
+  "features": {
+    "event_id": {
+      "type": "categorical",
+      "values": [
+        "1",
+        "2",
+        "5",
+        "6",
+        "8",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "26"
+      ]
+    },
+    "actor_role": {
+      "type": "categorical",
+      "values": [
+        "shell",
+        "script_host",
+        "shadow_admin",
+        "backup_admin",
+        "boot_admin",
+        "registry_admin",
+        "service_admin",
+        "task_admin",
+        "loader",
+        "other"
+      ]
+    },
+    "parent_role": {
+      "type": "categorical",
+      "values": [
+        "shell",
+        "script_host",
+        "shadow_admin",
+        "backup_admin",
+        "boot_admin",
+        "registry_admin",
+        "service_admin",
+        "task_admin",
+        "loader",
+        "other"
+      ]
+    },
+    "file_class": {
+      "type": "categorical",
+      "values": [
+        "executable",
+        "script",
+        "document",
+        "text",
+        "archive",
+        "media",
+        "database",
+        "config",
+        "temporary",
+        "log",
+        "shortcut",
+        "none",
+        "other"
+      ]
+    },
+    "file_location": {
+      "type": "categorical",
+      "values": [
+        "temp",
+        "cache",
+        "documents",
+        "downloads",
+        "appdata",
+        "windows",
+        "program_files",
+        "programdata",
+        "user_other",
+        "unc",
+        "other"
+      ]
+    },
+    "registry_area": {
+      "type": "categorical",
+      "values": [
+        "autorun",
+        "services",
+        "policy",
+        "inventory",
+        "file_association",
+        "other"
+      ]
+    },
+    "registry_hive": {
+      "type": "categorical",
+      "values": [
+        "hklm",
+        "hkcu",
+        "hku",
+        "hkcr",
+        "hkcc",
+        "other"
+      ]
+    },
+    "operation": {
+      "type": "categorical",
+      "values": [
+        "createkey",
+        "deletekey",
+        "deletevalue",
+        "setvalue",
+        "renamekey",
+        "renamevalue",
+        "createpipe",
+        "connectpipe",
+        "other"
+      ]
+    },
+    "integrity": {
+      "type": "categorical",
+      "values": [
+        "low",
+        "medium",
+        "high",
+        "system",
+        "appcontainer",
+        "untrusted",
+        "other"
+      ]
+    },
+    "registry_value_kind": {
+      "type": "categorical",
+      "values": [
+        "dword",
+        "qword",
+        "binary",
+        "other"
+      ]
+    },
+    "command_missing": {
+      "type": "boolean"
+    },
+    "is_executable": {
+      "type": "boolean"
+    },
+    "same_actor_as_previous": {
+      "type": "boolean"
+    },
+    "cmd_encoded_switch": {
+      "type": "boolean"
+    },
+    "cmd_url": {
+      "type": "boolean"
+    },
+    "cmd_shadow_delete": {
+      "type": "boolean"
+    },
+    "cmd_backup_delete": {
+      "type": "boolean"
+    },
+    "cmd_recovery_disable": {
+      "type": "boolean"
+    },
+    "cmd_service_stop": {
+      "type": "boolean"
+    },
+    "cmd_registry_edit": {
+      "type": "boolean"
+    },
+    "cmd_scheduled_task": {
+      "type": "boolean"
+    },
+    "cmd_file_delete": {
+      "type": "boolean"
+    },
+    "cmd_recursive_switch": {
+      "type": "boolean"
+    },
+    "delta_previous": {
+      "type": "numeric",
+      "transform": "log1p; elapsed clipped to 300s, counts to 10000"
+    },
+    "delta_actor": {
+      "type": "numeric",
+      "transform": "log1p; elapsed clipped to 300s, counts to 10000"
+    },
+    "recent_creates": {
+      "type": "numeric",
+      "transform": "log1p; elapsed clipped to 300s, counts to 10000"
+    },
+    "recent_deletes": {
+      "type": "numeric",
+      "transform": "log1p; elapsed clipped to 300s, counts to 10000"
+    },
+    "recent_unique_files": {
+      "type": "numeric",
+      "transform": "log1p; elapsed clipped to 300s, counts to 10000"
+    }
+  },
+  "input_rule": "Only the nested features object is a model input. Join labels/splits by run via events and runs.",
+  "excluded": [
+    "family",
+    "label",
+    "sample_sha256",
+    "run_key",
+    "group_id",
+    "process_guid",
+    "process_id",
+    "computer",
+    "raw_paths",
+    "raw_command_lines",
+    "absolute_timestamps",
+    "quality_flags",
+    "relation",
+    "event_uid"
+  ],
+  "missing": "null for absent/empty/dash; fixed encoder separates MISSING and UNK; model PAD uses mask"
+}

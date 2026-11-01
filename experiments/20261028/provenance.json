@@ -1,0 +1,23 @@
+{
+  "checked_on": "2026-11-01",
+  "dataset_id": "all-families-benign-seq32-20261028-094152",
+  "experiment_ids": {
+    "cnn_lstm": "cnn_lstm_20261028T015318Z_aa5a0561",
+    "cnn_only": "cnn_only_20261028T110024Z_7b0249ac",
+    "lstm_only": "lstm_only_20261028T112522Z_85151e3e"
+  },
+  "dataset_manifest_sha256": "82e04daedb6c7ca650ad26a9169d739e19090fdaa25801508a23605331e25d83",
+  "splits_sha256": "7516b569aae2c455ad5e7d464440c41809ee4cfcb0628f4bbe66f0b15fa6ca45",
+  "publication_edits": [
+    "Replaced local paths in public build metadata and baseline experiment configs.",
+    "Cleared notebook outputs and execution metadata; normalized Drive paths.",
+    "Added dated notebook variants; original notebooks and old embedded split remain unchanged."
+  ],
+  "not_published": [
+    "raw_logs",
+    "prepared_jsonl_data",
+    "model_weights",
+    "manuscripts"
+  ],
+  "audit_scope": "Dataset file and raw-source hashes, candidate and sequence counts, split isolation, prediction coverage, run aggregation, confusion-derived metrics, and validation-only threshold selection. No retraining or model reload."
+}

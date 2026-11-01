@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "architecture": "cnn_only",
+  "protocol_source": "CNN-LSTM training v1.0.0",
+  "python": "3.13.16",
+  "packages": {
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2",
+    "numpy": "2.1.3",
+    "scikit-learn": "1.6.1"
+  },
+  "seed": 20261001,
+  "epochs": 40,
+  "batch_size": 32,
+  "view": "system",
+  "input_shape": [
+    32,
+    148
+  ],
+  "parameters": 40065,
+  "software_groups_reviewed": false,
+  "interpretation": "pilot hash/group holdout",
+  "dataset_checksums_sha256": "82e04daedb6c7ca650ad26a9169d739e19090fdaa25801508a23605331e25d83",
+  "labels": {
+    "benign": 0,
+    "ransomware": 1
+  },
+  "label_scope": "run_weak_label",
+  "aggregation": "mean chunk probability; fixed before evaluation",
+  "weights": "train: inverse chunks per run times inverse class run count; normalized mean 1",
+  "selection": "minimum run-balanced validation binary crossentropy",
+  "validation_weights": "inverse chunks per run; normalized mean 1; no class balancing",
+  "optimizer": {
+    "name": "Adam",
+    "learning_rate": 0.001,
+    "clipnorm": 1.0
+  },
+  "early_stopping": {
+    "monitor": "val_loss",
+    "patience": 7
+  },
+  "reference_experiment": "../../reference_cnn_lstm",
+  "reference_config_sha256": "2106e9bae44516cfd7f307b06717ac44be405597a31c8f8bd6d1ad8102dfdd81",
+  "splits_sha256": "7516b569aae2c455ad5e7d464440c41809ee4cfcb0628f4bbe66f0b15fa6ca45",
+  "training_source_sha256": "e532ad60063cd2db76e70702141184c45c609ed2ca94272b47ba0b6d7ee0db12",
+  "core_source_sha256": "a245a6cb02e574e28f0db390adec645a29aac20351f4a7e9725e9dd2a86ef7e2",
+  "devices": [
+    "PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')",
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ],
+  "device_details": [
+    {
+      "device": "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')",
+      "details": {
+        "compute_capability": [
+          8,
+          0
+        ],
+        "device_name": "NVIDIA A100-SXM4-40GB"
+      }
+    }
+  ],
+  "reference_packages": {
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2",
+    "numpy": "2.1.3",
+    "scikit-learn": "1.6.1"
+  },
+  "package_version_differences": {}
+}
