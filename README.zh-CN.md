@@ -1,8 +1,28 @@
-# Sysmon Ransomware Research
+# SysRunLab
 
 [English](README.md) | **简体中文**
 
+*基于 Sysmon 的离线勒索软件行为采集与运行级分类研究工具链*
+
 Windows 离线虚拟机 Sysmon 行为采集、数据预处理与 CNN–LSTM / CNN-only / LSTM-only 分类研究代码。
+
+**SysRunLab** 由 **Sys**mon、**Run**（运行级评估）和 **Lab**（研究实验）组成，围绕采集质量、事件表示和可追溯评估组织研究流程，并提供三种架构的实验入口。
+
+## 快速导航
+
+- [扩充正常日志后的数据与实验记录](experiments/20261028/README.md)
+- [前处理说明](preprocess/README.md)
+- [CNN–LSTM 训练](training/README.md)与 [CNN-only / LSTM-only 对照](training_baselines/README.md)
+- [正常软件采集操作](host/README.md)
+
+克隆仓库：
+
+```powershell
+git clone https://github.com/kun-n66/SysRunLab.git
+Set-Location SysRunLab
+```
+
+仓库原名为 `sysmon-ransomware-research`。下文保留既有 `SysmonRealtime` 部署路径和采集器名称；本次更名不要求修改已有虚拟机、快照或计划任务。新环境请按实际位置调整路径。
 
 ## 新批次更新：2026-10-28
 

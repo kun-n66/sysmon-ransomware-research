@@ -1,10 +1,30 @@
-# Sysmon Ransomware Research
+# SysRunLab
 
 **English** | [简体中文](README.zh-CN.md)
+
+*A Sysmon-Based Research Toolkit for Offline Ransomware Behavior Collection and Run-Level Classification*
 
 A research toolkit for collecting Sysmon events from an offline Windows virtual machine, building auditable behavioral datasets, and training CNN–LSTM, CNN-only, and LSTM-only classifiers.
 
 The collection workflow streams events to the physical host through a VMware virtual serial port and a local named pipe. It supports controlled benign-software sessions and snapshot-based ransomware experiments, with a default observation window of 300 seconds.
+
+**SysRunLab** brings together **Sys**mon telemetry, **run**-level evaluation, and a research **lab** workflow. Collection integrity, event representation, and traceable evaluation are central to the project; CNN–LSTM, CNN-only, and LSTM-only are supported experimental architectures.
+
+## Start here
+
+- [Expanded dataset and recorded experiments](experiments/20261028/README.md)
+- [Preprocessing guide](preprocess/README.md)
+- [CNN–LSTM training](training/README.md) and [CNN-only / LSTM-only baselines](training_baselines/README.md)
+- [Detailed Chinese operating manual](README.zh-CN.md)
+
+Clone the repository:
+
+```powershell
+git clone https://github.com/kun-n66/SysRunLab.git
+Set-Location SysRunLab
+```
+
+The repository was previously named `sysmon-ransomware-research`. Deployment examples retain the existing `SysmonRealtime` directory and collector names so the rename does not require changing a working VM, snapshot, or scheduled task. Adapt paths when setting up a new environment.
 
 ## Expanded dataset update — 2026-10-28
 
